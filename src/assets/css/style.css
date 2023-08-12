@@ -366,6 +366,11 @@ textarea:focus {
   padding: 8rem 0;
 }
 
+.glazing_content {
+  animation: fadeIn; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 1s;
+}
+
 .glazing_block {
   display: inline-block;
 }
@@ -517,6 +522,7 @@ textarea:focus {
   border: none;
   text-decoration: none;
   color: #0089cd;
+  transition: 1s all;
   /*border-top: 1rem solid @blue;
 				height: 8rem;
 				padding: 2rem 1rem;
@@ -532,6 +538,8 @@ textarea:focus {
   height: 8rem;
   padding: 2rem 0;
   border-top: 1rem solid #f7f7f7;
+  transition: 1s all;
+  
 }
 
 .decoration_item .after_click {
@@ -544,6 +552,11 @@ textarea:focus {
 
 .decoration_content {
   margin-top: 8rem;
+}
+
+.decoration_content div div{
+  animation: fadeIn;
+  animation-duration: 1s;
 }
 
 .decoration_content_material img {
