@@ -1,6 +1,13 @@
 const forms = () => {
     const forms = document.querySelectorAll('form'),
-          inputs = document.querySelectorAll('input');
+          inputs = document.querySelectorAll('input'),
+          phoneInputs = document.querySelectorAll('input[name="user_phone"]');
+
+    phoneInputs.forEach(item => {
+        item.addEventListener('input', () => {
+            item.value = item.value.replace(/\D/, '');
+        })
+    })
           
     const message = {
         loading: 'Loading...',
@@ -45,7 +52,7 @@ const forms = () => {
                     clearInputs();
                     setTimeout(() => {
                         statusMessage.remove();
-                    }, 5000)
+                    }, 5000);
                 })
         })
     }) 
