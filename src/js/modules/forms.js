@@ -3,7 +3,8 @@ import closeAllModals from './closeAllModals';
 
 const forms = (modalState) => {
     const forms = document.querySelectorAll('form'),
-          inputs = document.querySelectorAll('input');
+          inputs = document.querySelectorAll('input'),
+          checkboxes = document.querySelectorAll('.checkbox');
 
     checkNumInputs('input[name="user_phone"]');
           
@@ -24,10 +25,22 @@ const forms = (modalState) => {
         return await res.text();
     }
 
-    const clearInputs = () => {
-        inputs.forEach(item => {
-            item.value = '';
+    const clearInputs = (elem) => {
+        elem.forEach(item => {
+            if (item.getAttribute('type') === 'checkbox') {
+                item.checked = false;
+            } else {
+                item.value = '';
+            }
         })
+    }
+
+    const clearModalState = () => {
+        for (let key in modalState) {
+            delete modalState[key];
+        }
+
+        clearInputs(checkboxes);
     }
 
     forms.forEach(item => {
@@ -52,10 +65,11 @@ const forms = (modalState) => {
                 })
                 .catch(() => statusMessage.textContent = message.failure)
                 .finally(() => {
-                    clearInputs();
+                    clearInputs(inputs);
                     setTimeout(() => {
                         statusMessage.remove();
                         closeAllModals();
+                        clearModalState();
                     }, 5000);
                 })
         })
