@@ -1,16 +1,11 @@
+import closeAllModals from "./closeAllModals";
+
 const modals = () => {
     const bindModal = (triggerSelector, modalSelector, closeSelector, closeClickOverlay = true) => {
         const triggers = document.querySelectorAll(triggerSelector),
               modal = document.querySelector(modalSelector),
-              close = document.querySelector(closeSelector),
-              windows = document.querySelectorAll('[data-modal]');
-
-        const closeAllModals = () => {
-            windows.forEach(item => {
-                item.style.display = 'none'
-            })
-        }
-
+              close = document.querySelector(closeSelector);
+        
         triggers.forEach(trigger => {
             trigger.addEventListener('click', e => {
                 if (e.target) {
@@ -52,7 +47,7 @@ const modals = () => {
     bindModal('.phone_link', '.popup', '.popup .popup_close');
     bindModal('.popup_calc_btn', '.popup_calc', '.popup_calc_close');
     bindModal('.popup_calc_button', '.popup_calc_profile', '.popup_calc_profile_close', false);
-    bindModal('.popup_calc_profile_button', '.popup_calc_end', '.popup_calc_end_close', false)
+    bindModal('.popup_calc_profile_button', '.popup_calc_end', '.popup_calc_end_close', false);
     showModalByTime('.popup', 60000);
 }
 
