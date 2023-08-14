@@ -1,6 +1,6 @@
 import checkNumInputs from './checkNumInputs';
 
-const forms = () => {
+const forms = (modalState) => {
     const forms = document.querySelectorAll('form'),
           inputs = document.querySelectorAll('input');
 
@@ -38,6 +38,11 @@ const forms = () => {
             item.appendChild(statusMessage);
 
             const formData = new FormData(item);
+            if (item.getAttribute('data-calc') === 'end') {
+                for (let key in modalState) {
+                    formData.append(key, modalState[key]);
+                }
+            }
 
             postData('assets/server.php', formData)
                 .then(res => {
